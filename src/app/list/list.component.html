@@ -1,0 +1,92 @@
+<!-- Page Title -->
+
+<div class="container flex items-center justify-around py-14 md:justify-start md:ml-10">
+  <a routerLink="/">
+    <svg width="16" height="16" fill="currentColor" class="bi bi-chevron-left"
+      viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+    </svg>
+  </a>
+  <h1>My Alarm</h1>
+  <svg width="16" height="16" fill="currentColor" class="invisible bi bi-trash-fill"
+    viewBox="0 0 16 16">
+    <path
+      d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+  </svg>
+</div>
+
+<!-- Alarm Time -->
+
+<div class="grid auto-rows-fr grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+  <div *ngFor="let item of alarm; let i = index" class="mx-5 p-4 card flex justify-between items-end rounded-md" >
+    <a routerLink="/edit/{{i}}" class="flex gap-10 items-end">
+      <div class="time">
+        <div style="font-weight: 400; font-size: .75rem; ">{{item.name}}</div>
+        <div><span style="font-weight: 700; font-size: 1.625rem; " class="jam">{{item.time}}</span></div>
+      </div>
+      <div class="days mb-1">
+        <span *ngIf="item.mon === 'true'; else notMon">
+          <span class="mon text-[#FE5F27]">M</span>
+        </span>
+        <ng-template #notMon>
+          <span class="mon text-[#818182]">M</span>
+        </ng-template>
+        <span *ngIf="item.tue === 'true'; else notTue">
+          <span class="tue text-[#FE5F27]">T</span>
+        </span>
+        <ng-template #notTue>
+          <span class="tue text-[#818182]">T</span>
+        </ng-template>
+        <span *ngIf="item.wed === 'true'; else notWed">
+          <span class="wed text-[#FE5F27]">W</span>
+        </span>
+        <ng-template #notWed>
+          <span class="wed text-[#818182]">W</span>
+        </ng-template>
+        <span *ngIf="item.thu === 'true'; else notThu">
+          <span class="thu text-[#FE5F27]">T</span>
+        </span>
+        <ng-template #notThu>
+          <span class="thu text-[#818182]">T</span>
+        </ng-template>
+        <span *ngIf="item.fri === 'true'; else notFri">
+          <span class="fri text-[#FE5F27]">F</span>
+        </span>
+        <ng-template #notFri>
+          <span class="fri text-[#818182]">F</span>
+        </ng-template>
+        <span *ngIf="item.sat === 'true'; else notSat">
+          <span class="sat text-[#FE5F27]">S</span>
+        </span>
+        <ng-template #notSat>
+          <span class="sat text-[#818182]">S</span>
+        </ng-template>
+        <span *ngIf="item.sun === 'true'; else notSun">
+          <span class="sun text-red-950">S</span>
+        </span>
+        <ng-template #notSun>
+          <span class="sun text-[#818182]">S</span>
+        </ng-template>
+      </div>
+
+    </a>
+    <div class="card-switch mb-2 z-30">
+      <label class="relative inline-flex items-center mr-5 cursor-pointer">
+        <input type="checkbox" value="" class="sr-only peer" [checked]="item.active" (click)="toggleActive(i)">
+        <div class="" [attr.class]="toggle"></div>
+      </label>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <a routerLink="/add" class="w-12 h-12 absolute bottom-6 right-4">
+    <svg class="svg-icon" fill="#FE5F27" viewBox="0 0 20 20">
+      <path
+        d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10">
+      </path>
+    </svg>
+  </a>
+</div>

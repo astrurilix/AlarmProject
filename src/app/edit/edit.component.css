@@ -1,0 +1,59 @@
+input[type="checkbox"]:checked+span {
+  color: #FE5F27;
+
+}
+
+input[type="checkbox"]:checked#sun+span {
+  color: rgb(190, 0, 0);
+}
+
+div,
+label {
+  color: #818182;
+}
+
+input,
+button {
+  box-shadow: 3px 4px 6px 0px rgba(225, 225, 225, 0.10), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+.bi-trash-fill{
+  color: #FE5F27;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.open-modal{
+  visibility: visible;
+  opacity: 1;
+  transition: all .5s ease-in-out;
+}
+
+.modal-content{
+  width: 50%;
+  background-color: #eee;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 45px 30px 30px;
+  border-radius: 20px;
+  transition: all .3s;
+  display: flex;
+  flex-direction: column;
+}

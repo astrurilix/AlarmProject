@@ -1,0 +1,91 @@
+<div class="container flex flex-col md:flex-row h-screen">
+
+  <!-- TimeNow -->
+  <div class="container" [class]="class_jam">
+    <h6 [attr.style]="style_time">Time Now</h6>
+    <h1>
+      {{time | date:'mediumTime'}}
+    </h1>
+  </div>
+  <!-- Active Lists -->
+  <div class="container md:py-24">
+    <div class="main">
+      <div class="text px-7 flex justify-between">
+        <p>Active Alarm</p>
+        <div class="flex flex-row">
+          <a routerLink="/list">
+            <svg class="svg-icon w-7 h-7" fill="#FE5F27" viewBox="0 0 20 20">
+              <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
+            </svg>
+          </a>
+          <a routerLink="/add" class="hidden md:block">
+            <svg class="svg-icon w-7 h-7" fill="#FE5F27" viewBox="0 0 20 20">
+              <path d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Alarm Yang Aktif -->
+    <router-outlet></router-outlet>
+  <div class="flex flex-col" *ngFor="let item of alarm; let i = index">
+    <a *ngIf="item.active" routerLink="/edit/{{i}}" [attr.class]="class_card">
+      <div class="time">
+        <div style="font-weight: 400; font-size: .75rem;">{{item.name}}</div>
+        <div><span style="font-weight: 700; font-size: 1.625rem; " class="jam">{{item.time}}</span></div>
+      </div>
+      <div class="days mb-1">
+        <span *ngIf="item.mon === 'true'; else notMon">
+          <span class="mon text-[#FE5F27]">M</span>
+        </span>
+        <ng-template #notMon>
+          <span class="mon text-[#818182]">M</span>
+        </ng-template>
+        <span *ngIf="item.tue === 'true'; else notTue">
+          <span class="tue text-[#FE5F27]">T</span>
+        </span>
+        <ng-template #notTue>
+          <span class="tue text-[#818182]">T</span>
+        </ng-template>
+        <span *ngIf="item.wed === 'true'; else notWed">
+          <span class="wed text-[#FE5F27]">W</span>
+        </span>
+        <ng-template #notWed>
+          <span class="wed text-[#818182]">W</span>
+        </ng-template>
+        <span *ngIf="item.thu === 'true'; else notThu">
+          <span class="thu text-[#FE5F27]">T</span>
+        </span>
+        <ng-template #notThu>
+          <span class="thu text-[#818182]">T</span>
+        </ng-template>
+        <span *ngIf="item.fri === 'true'; else notFri">
+          <span class="fri text-[#FE5F27]">F</span>
+        </span>
+        <ng-template #notFri>
+          <span class="fri text-[#818182]">F</span>
+        </ng-template>
+        <span *ngIf="item.sat === 'true'; else notSat">
+          <span class="sat text-[#FE5F27]">S</span>
+        </span>
+        <ng-template #notSat>
+          <span class="sat text-[#818182]">S</span>
+        </ng-template>
+        <span *ngIf="item.sun === 'true'; else notSun">
+          <span class="sun text-red-950">S</span>
+        </span>
+        <ng-template #notSun>
+          <span class="sun text-[#818182]">S</span>
+        </ng-template>
+      </div>
+    </a>
+  </div>
+  <a routerLink="/add" class="w-12 h-12 absolute bottom-6 right-4 md:hidden">
+    <svg class="svg-icon" fill="#FE5F27" viewBox="0 0 20 20">
+      <path
+        d="M14.613,10c0,0.23-0.188,0.419-0.419,0.419H10.42v3.774c0,0.23-0.189,0.42-0.42,0.42s-0.419-0.189-0.419-0.42v-3.774H5.806c-0.23,0-0.419-0.189-0.419-0.419s0.189-0.419,0.419-0.419h3.775V5.806c0-0.23,0.189-0.419,0.419-0.419s0.42,0.189,0.42,0.419v3.775h3.774C14.425,9.581,14.613,9.77,14.613,10 M17.969,10c0,4.401-3.567,7.969-7.969,7.969c-4.402,0-7.969-3.567-7.969-7.969c0-4.402,3.567-7.969,7.969-7.969C14.401,2.031,17.969,5.598,17.969,10 M17.13,10c0-3.932-3.198-7.13-7.13-7.13S2.87,6.068,2.87,10c0,3.933,3.198,7.13,7.13,7.13S17.13,13.933,17.13,10">
+      </path>
+    </svg>
+  </a>
+  </div>
+</div>

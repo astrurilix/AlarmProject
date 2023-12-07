@@ -1,0 +1,72 @@
+<!-- Page Title -->
+
+<div class="flex items-center justify-around py-14 md:justify-start md:ml-10">
+  <a routerLink="/list">
+    <svg width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+    </svg>
+  </a>
+  <h1>Add Alarm</h1>
+  <svg width="16" height="16" fill="currentColor" class="invisible bi bi-trash-fill" viewBox="0 0 16 16">
+    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+  </svg>
+</div>
+
+<form class="px-10 justify-evenly" action="">
+  <!-- Container Flex -->
+  <div style="height:83dvh;" class="flex flex-col justify-evenly items-center md:flex-row md:justify-around">
+    <!-- Time Input -->
+    <div>
+      <label for="time" style="font-weight: bolder;">Alarm Time</label><br>
+      <input #time style="height: 6rem; width:19.5rem; font-size: 3rem; padding-left:3rem;" class="rounded-lg text-center" type="time" name="time" id="time">
+    </div>
+    <!-- Other Inputs Container -->
+    <div class="flex flex-col gap-5">
+        <!-- Repeat -->
+        <div class="flex flex-col gap-5">
+          <label style="font-weight: bolder;">
+            Repeat
+          </label>
+          <div class="flex gap-5 justify-evenly">
+            <label class="cb-input">
+              <input #mon type="checkbox" name="mod" id="mod" value="mod" class="hidden" [checked]="ischecked1" (click)="dayColor('mod')" ><span [class]="color_mod">M</span>
+            </label>
+            <label class="cb-input">
+              <input #tue type="checkbox" name="tue" id="tue" value="tue" class="hidden" [checked]="ischecked2" (click)="dayColor('tue')"><span [class]="color_tue">T</span>
+            </label>
+            <label class="cb-input">
+              <input #wed type="checkbox" name="wed" id="wed" value="wed" class="hidden" [checked]="ischecked3" (click)="dayColor('wed')"><span [class]="color_wed">W</span>
+            </label>
+            <label class="cb-input">
+              <input #thu type="checkbox" name="thu" id="thu" value="thu" class="hidden" [checked]="ischecked4" (click)="dayColor('thu')"><span [class]="color_thu">T</span>
+            </label>
+            <label class="cb-input">
+              <input #fri type="checkbox" name="fri" id="fri" value="fri" class="hidden" [checked]="ischecked5" (click)="dayColor('fri')"><span [class]="color_fri">F</span>
+            </label>
+            <label class="cb-input">
+              <input #sat type="checkbox" name="sat" id="sat" value="sat" class="hidden" [checked]="ischecked6" (click)="dayColor('sat')"><span [class]="color_sat">S</span>
+            </label>
+            <label class="cb-input sunday">
+              <input #sun type="checkbox" name="sun" id="sun" value="sun" class="hidden" [checked]="ischecked7" (click)="dayColor('sun')"><span [class]="color_sun">S</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Repeat Everyday -->
+        <div style="font-weight: bolder;" class="flex gap-5">
+          Everyday
+          <label class="relative flex items-center mr-5 cursor-pointer w-11 h-6">
+            <input type="checkbox" value="" class="sr-only peer" [checked]="ischecked0" (click)="everydayColor()">
+            <div class="" [attr.class]="toggle">
+            </div>
+          </label>
+        </div>
+
+        <div>
+          <label for="name" style="font-weight: bolder;">Alarm Name</label><br>
+          <input #name style="height: 2.625rem; width:19.5rem; padding:1rem;" class="rounded-lg" type="text" name="name" id="name" placeholder="Enter Name Here">
+        </div>
+        <button style="height: 2.625rem; width:19.5rem; padding:0.5rem; color: #F2F3F7; background-color:#fe5f27;" class="rounded-lg" (click)="submitAlarm(name.value, mon.value, tue.value, wed.value, thu.value, fri.value, sat.value, sun.value, time.value)">Add Alarm</button>
+      </div>
+  </div>
+</form>
